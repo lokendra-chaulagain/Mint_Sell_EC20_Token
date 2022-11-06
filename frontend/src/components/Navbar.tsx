@@ -6,7 +6,11 @@ const Navbar = () => {
   const { connectWallet, currentAccount, accountBalance, loading } = useContext(CrowdsaleContext);
 
   return (
-    <div className="pt-3 px-4 d-flex container justify-content-end">
+    <div className="pt-3 px-4 d-flex   align-items-center justify-content-between">
+      <div>
+        <h4>Buy OLC Tokens</h4>
+      </div>
+
       <button
         onClick={connectWallet}
         type="button"

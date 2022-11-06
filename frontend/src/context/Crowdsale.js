@@ -10,7 +10,11 @@ export const CrowdsaleContextProvider = ({ children }) => {
   const [accountBalance, setAccountBalance] = useState("");
   const [loading, setLoading] = useState(false);
 
-
+  const [provider, setProvider] = useState(undefined);
+  const [signer, setSigner] = useState(undefined);
+  const [contract, setContract] = useState(undefined);
+  const [signerAddress, setSignerAddress] = useState(undefined);
+  const [amount, setAmount] = useState(0);
 
   const connectionSuccess = () =>
     toast.success("Wallet connected Successfully ", {
@@ -20,6 +24,35 @@ export const CrowdsaleContextProvider = ({ children }) => {
     toast.warning("Wallet Already Connected ! ", {
       className: "toast_message_success",
     });
+
+
+
+
+
+
+
+
+
+
+
+
+  // Fetch contract and provider on every page refresh
+  useEffect(() => {
+    const onLoad = async () => {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        setProvider(provider);
+
+        const contract = new ethers.Contract(contractAddress, contractAbi, provider);
+        setContract(contract);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    onLoad();
+  }, []);
+  console.log("Provider :", provider);
+  console.log("Contract :", contract);
 
   // This function runs on every page refresh and gets connected wallet address
   useEffect(() => {
@@ -57,15 +90,29 @@ export const CrowdsaleContextProvider = ({ children }) => {
       try {
         const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
         setCurrentAccount(accounts[0]);
-
         setLoading(false);
-
         {
           currentAccount ? alreadyConnected() : connectionSuccess();
         }
-
-
         console.log(`Wallet connected successfully and wallet address is ${accounts[0]}`);
+
+        // const signer=provider.getSigner()
+        // setSigner(signer)
+        // console.log("Signer",signer);
+
+        // const address=signer.getAddress()
+        // setSignerAddress(address)
+        // console.log("SignerAddress",signerAddress);
+        getSigner(provider).then((signer) => {
+          setSigner(signer);
+        });
+
+   
+
+
+
+
+
       } catch (error) {
         setLoading(true);
         console.log(error);
@@ -75,6 +122,20 @@ export const CrowdsaleContextProvider = ({ children }) => {
       console.log("Please install metamask");
     }
   };
+
+
+
+  const getSigner = async provider => {
+    const signer = provider.getSigner();
+
+    signer.getAddress()
+      .then((address) => {
+        setSignerAddress(address)
+      })
+
+    return signer;
+  }
+
 
   // Function that listen on account changed
   useEffect(() => {
@@ -92,5 +153,18 @@ export const CrowdsaleContextProvider = ({ children }) => {
     walletRemovedOrWalletChangedListener();
   }, [currentAccount]);
 
-  return <CrowdsaleContext.Provider value={{ connectWallet, currentAccount, accountBalance, loading }}>{children}</CrowdsaleContext.Provider>;
+  // helper function to convert ethers to wei
+  const toWei = (ether) => ethers.utils.parseEther(ether);
+
+  // const buyToken = async () => {
+  //   const wei = toWei(amount);
+  //   await contract.connect(signer).buyToken(signerAddress, { value: wei });
+  // };
+
+  const buyTokens = async () => {
+    const wei = toWei(amount);
+    await contract.connect(signer).buyTokens(signerAddress, { value: wei });
+  };
+
+  return <CrowdsaleContext.Provider value={{ connectWallet, currentAccount, accountBalance, loading ,buyTokens,amount, setAmount}}>{children}</CrowdsaleContext.Provider>;
 };

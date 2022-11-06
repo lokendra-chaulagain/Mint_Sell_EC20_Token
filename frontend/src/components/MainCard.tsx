@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Image from "next/image";
-import profileImg from "../../public/assets/monkey.jpg";
+import thumbnail from "../../public/assets/thumbnail.webp";
 import etherLogo from "../../public/assets/etherium_logo.png";
 import { FaUserAlt } from "react-icons/fa";
 import { SiEthereum } from "react-icons/si";
@@ -8,18 +8,20 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { CrowdsaleContext } from "../context/Crowdsale";
 
 const MainCard = () => {
-  const { connectWallet, currentAccount, accountBalance, loading } = useContext(CrowdsaleContext);
+  const { connectWallet, currentAccount, accountBalance, loading, buyTokens, amount, setAmount } = useContext(CrowdsaleContext);
+  console.log(amount)
   return (
-    <div className="custom_Card pb-2 rounded-2 ">
+    <div className="custom_Card pb-2 rounded-2 mt-4 mt-lg-0 ">
       <Image
-        src={profileImg}
+        src={thumbnail}
         width={1000}
         height={350}
         objectFit="cover"
         alt=""
       />
 
-      <h4 className="text-center">Ethers ToDo DApps</h4>
+      <h4 className="text-center">Mint and Sell ERC20 Tokens DApp</h4>
+      <p className="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur ducimus est vel nisi debitis expedita. Repellat minus illo modi voluptatum.</p>
       <div className="d-flex align-items-center justify-content-center">
         <Image
           src={etherLogo}
@@ -111,11 +113,11 @@ const MainCard = () => {
         <button
           onClick={connectWallet}
           type="button"
-          className=" w-100 custom_button d-flex align-items-center justify-content-center btn px-4   rounded-pill">
+          className=" w-100 card_button  d-flex align-items-center justify-content-center btn px-4   rounded-pill">
           {loading && !currentAccount ? (
             <BeatLoader
               color="#1e5262"
-              className="custom_spinner"
+              className="custom_spinner "
             />
           ) : currentAccount ? (
             "Connected"
@@ -123,6 +125,17 @@ const MainCard = () => {
             "Connect Wallet"
           )}
         </button>
+      </div>
+
+      <div>
+        <input
+          name="amount"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          type="text"
+          placeholder="jjf"
+        />
+        <button onClick={buyTokens} >But</button>
       </div>
     </div>
   );

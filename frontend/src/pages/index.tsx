@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { FaBeer } from "react-icons/fa";
+import React from "react";
 import MainCard from "../components/MainCard";
 import Navbar from "../components/Navbar";
 
@@ -7,7 +6,7 @@ function Index() {
   return (
     <div className="app_body ">
       <Navbar />
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center px-2">
         <MainCard />
       </div>
     </div>

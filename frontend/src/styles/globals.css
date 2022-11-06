@@ -1,64 +1,79 @@
 .card_heading {
-    color: rgb(32, 32, 173) !important;
-    font-size: calc(1rem + 0.4vw);
-  }
-  
-  .input_label {
-    font-size: calc(1rem + 0.15vw);
-  }
-  
-  .app_body {
-    background-color: #0b0c1a !important;
-    color: #afafd7 !important ;
-    height: 100vh;
-  }
-  .custom_Card {
-    background-color: #0e101b !important;
-    border: 1px solid #1e5262 !important;
-    width: calc(24rem + 12vw);
-  }
-  
-  .custom_button {
-    background-color: #141a2a !important;
-    border: 1px solid #1e5262 !important;
-    color: #afafd7 !important;
-    font-size: 18px !important;
-  }
-  
-  .custom_button:hover {
-    color: whitesmoke !important;
-    border-color: #42b2d4 !important;
-  }
-  
-  .btn-check:checked + .btn,
-  .btn.active,
-  .btn.show,
-  .btn:first-child:active,
-  :not(.btn-check) + .btn:active {
-    color: white !important;
-    border-color: #0fb5e7 !important;
-    background-color: #354575 !important;
-  }
-  
-  .input_field {
-    background-color: #141a2a !important;
-    color: #afafd7 !important;
-    font-size: calc(0.9rem + 0.3vw) !important;
-    height: 100% !important;
-    width: 100% !important;
-    outline: none;
-  }
-  
-  .toast_message_success {
-    background: #141a2a !important;
-    color: #afafd7;
-    font-size: 19px;
-    width: 34vw;
-    padding: 30px 20px;
-  }
-  
-  
-  .custom_alert{
-    background-color:  rgb(54, 54, 29) !important;
-    color: #afafd7 !important;
-  }
+  color: rgb(32, 32, 173) !important;
+  font-size: calc(1rem + 0.4vw);
+}
+
+.input_label {
+  font-size: calc(1rem + 0.15vw);
+}
+
+.app_body {
+  background-color: #0b0c1a !important;
+  color: #afafd7 !important ;
+  height: 115vh;
+}
+
+.custom_Card {
+  background-color: #0e101b !important;
+  border: 1px solid #1e5262 !important;
+  width: calc(24rem + 12vw);
+}
+
+.custom_button {
+  background-color: #141a2a !important;
+  border: 1px solid #1e5262 !important;
+  color: #afafd7 !important;
+  font-size: 18px !important;
+}
+
+.custom_button:hover {
+  color: whitesmoke !important;
+  border-color: #42b2d4 !important;
+}
+
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
+  color: white !important;
+  border-color: #0fb5e7 !important;
+  background-color: #354575 !important;
+}
+
+.input_field {
+  background-color: #141a2a !important;
+  color: #afafd7 !important;
+  font-size: calc(0.9rem + 0.3vw) !important;
+  height: 100% !important;
+  width: 100% !important;
+  outline: none;
+}
+
+.toast_message_success {
+  background: #141a2a !important;
+  color: #afafd7;
+  font-size: 16px;
+}
+
+.custom_alert {
+  background-color: rgb(54, 54, 29) !important;
+  color: #afafd7 !important;
+}
+
+.card_button {
+  background-color: #141a2a !important;
+  border: 1px solid #1e5262 !important;
+  color: #afafd7 !important;
+  font-size: 18px !important;
+  padding: calc(0.5rem + 0.2vw) 0px !important;
+}
+
+.card_button:hover {
+  color: whitesmoke !important;
+  border-color: #42b2d4 !important;
+}
+
+.custom_spinner {
+  padding: calc(0.2rem + 0.1vw) 0px !important;
+}
